@@ -1,5 +1,7 @@
 package chapter1_3;
 
+import java.util.Iterator;
+
 public class ResizingArrayStack<Item> {
     private Item[] a; // stack entries
     private int N; // size
@@ -54,5 +56,23 @@ public class ResizingArrayStack<Item> {
         if (N > 0 && N == a.length / 4) resize(a.length / 2);
         // 数组长度改变之后，状态是半满；下次改变数组大小之前，仍能多次push和pop
         return item;
+    }
+
+    /**
+     * 嵌套类：可以访问包含它的类的实例变量（即：a[]和 N）
+     * 支持先进后出的迭代
+     */
+    private class ReverseArrayIterator implements Iterator<Item> {
+        private int i = N;
+
+        @Override
+        public boolean hasNext() {
+            return i > 0;
+        }
+
+        @Override
+        public Item next() {
+            return a[--i];
+        }
     }
 }
