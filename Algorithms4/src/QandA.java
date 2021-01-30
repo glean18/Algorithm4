@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Queue;
 import java.util.Stack;
 
@@ -18,5 +19,6 @@ public class QandA {
         System.out.printf("|%4s|%4d|\n","abc",1);*/
         int a = 0, b = 8;
         System.out.println(a + ((b - a) >> 1));
+
     }
 }
