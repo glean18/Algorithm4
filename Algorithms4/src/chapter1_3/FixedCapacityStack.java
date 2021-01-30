@@ -26,10 +26,21 @@ public class FixedCapacityStack<Item> {
     }
 
     /**
+     * 将大小为 N <= max 的栈移动到一个新的max大小的数组中
+     * @param max
+     */
+    private void resize(int max) {
+        Item[] temp = (Item[]) new Object[max];
+        for (int i = 0; i < N; i++) temp[i] = a[i];
+        a = temp;
+    }
+
+    /**
      * push元素
      * @param item
      */
     public void push (Item item) {
+        if (N == a.length) resize(a.length * 2);
         a[N++] = item;
     }
 
@@ -38,6 +49,9 @@ public class FixedCapacityStack<Item> {
      * @return
      */
     public Item pop() {
-        return a[--N];
+        Item item = a[--N];
+        a[N] = null; // 避免对象游离
+        if (N > 0 && N == a.length / 4) resize(a.length / 2);
+        return item;
     }
 }
