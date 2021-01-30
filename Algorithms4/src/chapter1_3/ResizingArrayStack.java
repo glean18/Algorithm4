@@ -2,7 +2,7 @@ package chapter1_3;
 
 import java.util.Iterator;
 
-public class ResizingArrayStack<Item> {
+public class ResizingArrayStack<Item> implements Iterable<Item>{
     private Item[] a; // stack entries
     private int N; // size
 
@@ -56,6 +56,11 @@ public class ResizingArrayStack<Item> {
         if (N > 0 && N == a.length / 4) resize(a.length / 2);
         // 数组长度改变之后，状态是半满；下次改变数组大小之前，仍能多次push和pop
         return item;
+    }
+
+    @Override
+    public Iterator<Item> iterator() {
+        return new ReverseArrayIterator();
     }
 
     /**
