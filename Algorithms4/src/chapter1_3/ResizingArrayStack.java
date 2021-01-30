@@ -1,10 +1,10 @@
 package chapter1_3;
 
-public class FixedCapacityStack<Item> {
+public class ResizingArrayStack<Item> {
     private Item[] a; // stack entries
     private int N; // size
 
-    public FixedCapacityStack(int n) {
+    public ResizingArrayStack(int n) {
 //        a = new Item[n];  // 错误
         a = (Item[]) new Object[n];  // 强制转换成Item[]类型
     }
